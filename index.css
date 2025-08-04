@@ -1,0 +1,233 @@
+:root {
+  --background-color: #131722;
+  --container-color: #1e222d;
+  --text-color: #d1d4dc;
+  --primary-color: #2962ff;
+  --buy-color: #26a69a;
+  --sell-color: #ef5350;
+  --hold-color: #434651;
+  --font-family-header: 'Space Grotesk', sans-serif;
+  --font-family-body: 'Roboto Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 800px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: var(--container-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--hold-color);
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-family: var(--font-family-header);
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.subtitle {
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.interval-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.interval-button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--hold-color);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-family-body);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.interval-button:hover {
+  background-color: var(--hold-color);
+  color: #fff;
+}
+
+.interval-button.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+
+.market-list-container {
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 10px; /* space for scrollbar */
+}
+
+/* Custom scrollbar for webkit browsers */
+.market-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.market-list-container::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.market-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--hold-color);
+  border-radius: 4px;
+  border: 2px solid var(--background-color);
+}
+
+.market-list-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+
+
+.market-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.market-list.list-loading .market-list-item {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
+
+
+.market-list-item {
+  display: grid;
+  grid-template-columns: 30px 1fr 90px 80px auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, transform 0.2s, opacity 0.2s;
+}
+
+.market-list-item:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.rank {
+  font-family: var(--font-family-header);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.market-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.korean-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.market-code {
+  color: #8c8f99;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.change-rate, .rsi-value {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.change-rate.positive {
+  color: var(--buy-color);
+}
+
+.change-rate.negative {
+  color: var(--sell-color);
+}
+
+.change-rate.neutral {
+  color: var(--text-color);
+}
+
+.rsi-value.rsi-oversold {
+  color: var(--buy-color);
+}
+
+.rsi-value.rsi-overbought {
+  color: var(--sell-color);
+}
+
+.rsi-value.rsi-neutral {
+  color: var(--text-color);
+}
+
+
+.trade-volume {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-color);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.loading-text,
+.error-text,
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
+.error-text {
+  color: var(--sell-color);
+}
